@@ -6,7 +6,7 @@ Visit <https://github.com/jwodder/curselect> for more information.
 
 from __future__ import annotations
 from collections.abc import Callable, Iterable, Iterator
-from typing import TypeVar
+from typing import Generic, TypeVar
 import urwid
 
 __version__ = "0.1.0.dev1"
@@ -30,7 +30,7 @@ K = TypeVar("K")
 V = TypeVar("V")
 
 
-class Form[K, V]:
+class Form(Generic[K, V]):
     def __init__(
         self,
         *,
@@ -132,7 +132,7 @@ class Form[K, V]:
         raise urwid.ExitMainLoop()
 
 
-class Selector[V]:
+class Selector(Generic[V]):
     def __init__(
         self,
         label: str,
@@ -196,7 +196,7 @@ class Selector[V]:
             )
 
 
-class MultiSelector[V]:
+class MultiSelector(Generic[V]):
     def __init__(
         self,
         label: str,
