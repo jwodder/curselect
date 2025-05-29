@@ -39,7 +39,7 @@ classifiers = [
 ]
 
 dependencies = [
-    "urwid ~= 2.1",
+    "urwid ~= 3.0",
 ]
 
 [project.urls]
@@ -74,3 +74,10 @@ strict_equality = true
 warn_redundant_casts = true
 warn_return_any = true
 warn_unreachable = true
+
+[[tool.mypy.overrides]]
+module = [
+    # <https://github.com/urwid/urwid/issues/1028>
+    "urwid.*",
+]
+ignore_missing_imports = true
