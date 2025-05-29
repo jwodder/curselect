@@ -1,8 +1,8 @@
-# /// script
-# dependencies = ["urwid ~= 2.1"]
-# ///
-
 """
+TUI selection list forms
+
+Visit <https://github.com/jwodder/curselect> for more information.
+
 A library for presenting the user with a full-screen series of selection lists
 (radio buttons or, for multi-selectables, checkboxes) and capturing their
 selections
@@ -56,6 +56,12 @@ from __future__ import annotations
 from collections.abc import Callable, Iterable, Iterator
 from typing import TypeVar
 import urwid
+
+__version__ = "0.1.0.dev1"
+__author__ = "John Thorvald Wodder II"
+__author_email__ = "curselect@varonathe.org"
+__license__ = "MIT"
+__url__ = "https://github.com/jwodder/curselect"
 
 GUTTER = 2
 
