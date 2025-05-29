@@ -115,7 +115,10 @@ class Form[K, V]:
         field, value = user_data
         assert self.selections is not None
         selected = self.selections[field]
-        assert isinstance(selected, list)
+        if selected is None:
+            selected = self.selections[field] = []
+        else:
+            assert isinstance(selected, list)
         if state:
             selected.append(value)
         else:
