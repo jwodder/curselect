@@ -67,3 +67,48 @@ Installation
 <https://pip.pypa.io>`_ for Python 3 (You have pip, right?) to install it::
 
     python3 -m pip install git+https://github.com/jwodder/curselect.git
+
+
+Example
+=======
+
+.. code:: python
+
+    import json
+    from curselect import Form, MultiSelector, Selector
+
+    form = Form()
+    form.add(
+        "flavor",
+        Selector(
+            "Flavors:",
+            [
+                "Vanilla",
+                "Chocolate",
+                "Strawberry",
+                "Cinnamon",
+                "Butterscotch",
+                "Peanut Butter Fudge",
+                "Chili",
+            ],
+            default=0,
+        ),
+    )
+    form.add(
+        "toppings",
+        MultiSelector(
+            "Toppings:",
+            [
+                "Whipped Cream",
+                "Hot Fudge",
+                "Nuts",
+                "Cherry",
+                "Banana",
+            ],
+        ),
+    )
+    selections = form.run()
+    print(json.dumps(selections, indent=4))
+
+.. image:: example.png
+    :alt: Example program in action
