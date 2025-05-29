@@ -2,54 +2,6 @@
 TUI selection list forms
 
 Visit <https://github.com/jwodder/curselect> for more information.
-
-A library for presenting the user with a full-screen series of selection lists
-(radio buttons or, for multi-selectables, checkboxes) and capturing their
-selections
-
-Outline of usage:
-- Instantiate a `Form`
-- Call `form.add(field, selector)` with each `Selector` or `MultiSelector` you
-  wish to present the user
-    - For those fields that can be set on both `Form` and the selector classes,
-      leaving them unset/None on a selector causes the selector to inherit the
-      value from the `Form`.
-- Call `form.run()` to get the user's selections
-    - Returns a `dict` mapping fields to the selections, or `None` if the user
-      cancelled
-    - The selection for a `Selector` is either the selected value or None
-    - The selection for a `MultiSelector` is either a list of selected values
-      or (if none were selected *and* the `defaults` parameter was `None`) None
-
-Keybindings:
-- j, DOWN — move down
-- k, UP — move up
-- h, LEFT — move left
-- l, RIGHT — move right
-- w, PAGE UP — go up a page
-- z, PAGE DOWN — go down a page
-- g — go to first item
-- G — go to last item
-- TAB — go to next list
-- SHIFT+TAB — go to previous list
-- ENTER, SPACE — select/activate current selection
-- q, Q — cancel
-
-TODO:
-- Get multi-level focus changing with 'g', 'G', TAB, and SHIFT+TAB to work
-  properly
-    - <https://github.com/urwid/urwid/issues/466>
-- Add a "required" option to the selector classes that causes "OK" to beep and
-  not exit if nothing in the list is selected?
-- Add `select()` and `multiselect()` functions for only showing a single
-  selection list?
-- Rename `[Multi]Selector` to `[Multi]Select`?
-- Add options for setting the label-list gutter width?
-- Add options for text to show at the top & bottom of the screen?
-    - default top text: nothing
-    - default bottom text: basic help
-- Add help screen shown on '?'?
-- Add option for custom help text?
 """
 
 from __future__ import annotations
