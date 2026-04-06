@@ -39,7 +39,7 @@ classifiers = [
 ]
 
 dependencies = [
-    "urwid ~= 3.0",
+    "urwid ~= 4.0",
 ]
 
 [project.urls]
