@@ -120,3 +120,6 @@ See Also
 - `cursive-select <https://github.com/jwodder/cursive-select>`_, a
   roughly-equivalent implementation in Rust made using the `cursive
   <https://crates.io/crates/cursive>`_ library
+
+- `ratselect <https://github.com/jwodder/ratselect>`_, a roughly-equivalent
+  implementation in Rust made using the `Ratatui <https://ratatui.rs>`_ library
