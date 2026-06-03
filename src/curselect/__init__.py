@@ -58,7 +58,9 @@ class Form(Generic[K, V]):
         widgets.append(self._ok_cancel())
         top = ListBoxTopBottable(urwid.SimpleListWalker(widgets))
 
-        def _unhandler(key: str) -> None:
+        def _unhandler(
+            key: str | tuple[str, int, int, int], _flag: bool | None = None
+        ) -> None:
             # urwid doesn't seem to handle "ESC" as input well, so use 'q' to
             # cancel.
             if key == "q" or key == "Q":
@@ -124,11 +126,11 @@ class Form(Generic[K, V]):
         else:
             selected.remove(value)
 
-    def _cancel(self, button: urwid.Button) -> None:
+    def _cancel(self, button: urwid.Button | None) -> None:
         self.selections = None
         self._exit(button)
 
-    def _exit(self, _button: urwid.Button) -> None:
+    def _exit(self, _button: urwid.Button | None) -> None:
         raise urwid.ExitMainLoop()
 
 
@@ -286,9 +288,11 @@ class TopBottable:
 
 class ListBoxTopBottable(urwid.ListBox, TopBottable):
     def get_elements(self) -> list[urwid.Widget]:
+        assert isinstance(self.body, urwid.SimpleListWalker)
         return list(self.body)
 
     def focus_next(self) -> None:
+        assert isinstance(self.body, urwid.SimpleListWalker)
         indices = list(range(len(self.body)))
         indices = (
             indices[self.focus_position + 1 :] + indices[: self.focus_position + 1]
@@ -302,6 +306,7 @@ class ListBoxTopBottable(urwid.ListBox, TopBottable):
                 return
 
     def focus_prev(self) -> None:
+        assert isinstance(self.body, urwid.SimpleListWalker)
         indices = list(range(len(self.body)))
         indices = indices[self.focus_position :] + indices[: self.focus_position]
         indices.reverse()
@@ -319,7 +324,7 @@ class PileTopBottable(urwid.Pile, TopBottable):
         return [w for w, _ in self.contents]
 
 
-class ColumnsTopBottable(urwid.Columns, TopBottable):
+class ColumnsTopBottable(urwid.Columns, TopBottable):  # type: ignore[misc]
     def get_elements(self) -> list[urwid.Widget]:
         return [w for w, _ in self.contents]
 
