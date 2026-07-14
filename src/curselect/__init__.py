@@ -333,5 +333,7 @@ def none_or(a: K | None, b: K) -> K:
     return a if a is not None else b
 
 
-def remap_keys(keys: Iterable[str], _raw: list[int]) -> list[str]:
-    return [REMAPPED_KEYS.get(k, k) for k in keys]
+def remap_keys(
+    keys: list[str | tuple[str, int, int, int]], _raw: list[int]
+) -> list[str]:
+    return [REMAPPED_KEYS.get(k, k) for k in keys if isinstance(k, str)]
