@@ -264,7 +264,7 @@ class MultiSelector(Generic[V]):
 
 
 class TopBottable:
-    def get_elements(self) -> list[urwid.Widget]:
+    def get_elements(self) -> list[urwid.AbstractWidget]:
         raise NotImplementedError
 
     def focus_top(self) -> None:
@@ -287,7 +287,7 @@ class TopBottable:
 
 
 class ListBoxTopBottable(urwid.ListBox, TopBottable):
-    def get_elements(self) -> list[urwid.Widget]:
+    def get_elements(self) -> list[urwid.AbstractWidget]:
         assert isinstance(self.body, urwid.SimpleListWalker)
         return list(self.body)
 
@@ -320,12 +320,12 @@ class ListBoxTopBottable(urwid.ListBox, TopBottable):
 
 
 class PileTopBottable(urwid.Pile, TopBottable):
-    def get_elements(self) -> list[urwid.Widget]:
+    def get_elements(self) -> list[urwid.AbstractWidget]:
         return [w for w, _ in self.contents]
 
 
 class ColumnsTopBottable(urwid.Columns, TopBottable):  # type: ignore[misc]
-    def get_elements(self) -> list[urwid.Widget]:
+    def get_elements(self) -> list[urwid.AbstractWidget]:
         return [w for w, _ in self.contents]
 
 
@@ -335,5 +335,5 @@ def none_or(a: K | None, b: K) -> K:
 
 def remap_keys(
     keys: list[str | tuple[str, int, int, int]], _raw: list[int]
-) -> list[str]:
+) -> list[str | tuple[str, int, int, int]]:
     return [REMAPPED_KEYS.get(k, k) for k in keys if isinstance(k, str)]
