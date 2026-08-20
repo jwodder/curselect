@@ -51,7 +51,7 @@ class Form(Generic[K, V]):
         self.selections = {
             field: selector._get_default() for field, selector in self.selectors.items()
         }
-        widgets = []
+        widgets: list[urwid.AbstractFlowWidget] = []
         for field, selector in self.selectors.items():
             widgets.append(selector._mkwidget(self, field))
             widgets.append(urwid.Divider())
