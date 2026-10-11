@@ -9,7 +9,7 @@ from collections.abc import Callable, Iterable, Iterator
 from typing import Generic, TypeVar
 import urwid
 
-__version__ = "0.1.0.dev1"
+__version__ = "0.0.0"
 __author__ = "John Thorvald Wodder II"
 __author_email__ = "curselect@varonathe.org"
 __license__ = "MIT"
